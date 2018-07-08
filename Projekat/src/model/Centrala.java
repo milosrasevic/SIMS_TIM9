@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Centrala {
 	// Singleton
 	
-	private ArrayList<Cenovnik> cenovnici = new ArrayList<Cenovnik>();
 	private ArrayList<Deonica> deonice = new ArrayList<Deonica>();
 	private ArrayList<NaplatnaStanica> naplatneStanice = new ArrayList<NaplatnaStanica>();
 	private ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
@@ -13,10 +12,6 @@ public class Centrala {
 	
 	private static Centrala centrala = null;
 	
-	private Centrala() 
-	{
-		
-	}
 	
 	public static Centrala getInstance()
 	{
@@ -66,13 +61,6 @@ public class Centrala {
 		
 	}
 
-	public ArrayList<Cenovnik> getCenovnici() {
-		return cenovnici;
-	}
-
-	public void setCenovnici(ArrayList<Cenovnik> cenovnici) {
-		this.cenovnici = cenovnici;
-	}
 
 	public ArrayList<Deonica> getDeonice() {
 		return deonice;
