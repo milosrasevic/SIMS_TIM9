@@ -1,0 +1,82 @@
+nastavak sims projekta
+
+
+i svi ti pokusaji i sam kvar treba da se upisu u bazu podataka ondnosno potrebno je da se te informacije prate,isto tako senzor ocekuje kad vozilo prodje da 
+se rampa spusti,ako se ne spusti mora da izda komandu o spsutanju rampe,sve te informacije o pokusajima potrebno je snimati u bazu podataka
+te kvarove moze da detektuje i onaj racunar onaj da kazem kontroler 
+isto tako moze detektovati onaj racunar za kojim sedi operater
+treba pustiti da se svaki dogadjaj odvija na 5 sekundi ili na sekundu
+
+kvar je opisan i treba evindentirati: 
+opisan je vremenom kad se desio,naplatnim mestom gde se desio,id-em uredjaja koji je detektovao,
+(moze i vrsta kvara) fazon nije htela da se podigne ili nije htela da se spusti 
+
+nema posebnog nacina da fajlovi izvestaja budu formatirani
+treba obratiti paznju kad se modeluju izvestaji na to sta se trazi 
+koje klase imamo,koje atribute u tim klasama
+
+nas covek moze u dinarima i u evrima
+nema strano domace,samo iznosi u dinarima ili u evrima 
+izvestaji su recimo kvarovi,zelim da vidim sve kvarove koji su se desili na nekoj 
+naplatnoj rampi 
+
+kako je zamisljena izrada aplikacije:
+logovanje korisnika obavezno
+naplatna stanica mora biti omogucena da se sve radi bez misa,krupne kontole,jasno i veliko
+da sve moze na neke kontrolne tastere 
+
+ko zeli moze napraviti kao web aplikacije ali nije bitno,najklasicnija moguca
+desktop aplikacija,meni i sve ostalo
+GUI nije toliko bitna 
+
+treba da budu dve odvojene aplikacije(realno 3 ali aj da kazemo 2)
+
+samo jedna aplikacija da se loguje dovoljno
+
+naplatno mesto - naplatna stanica - centrala 
+
+
+podaci sa naplatnih mesta se salju u naplatnu stanicu a onda sa stanica u centralu 
+
+pravi se sa jednim skladistem snimajte u cemu hocete,fajlu 
+
+centrala je unija 
+
+napravite model tako da te klase budu tako napravljene da mi mozemo zahvatiti nesto...
+
+koje uloge tacno imamo i sta tacno ko moze da radi:
+	imamo administratora koji obavlja inicijalni unos podataka,registruje naplatne stanice,
+	naplatna mesta u okviiru naplatnih stanica...
+	
+	zatim ide zaposleni u centrali,on moze da gleda sve izvestaje
+	
+	sef stanice gleda sve izvestaje koji su vezani za tu stanicu,znaci
+	naplata za tu stanicu za jedan dan ili naplata za tu stanicu za odredjeni vremenski
+	interval... moze da menja cene,zaduzen je za unos cena za sve deonice koje se 
+	ulivaju u tu stanicu.... gleda sta je u kvaru,on moze i preventivno da gleda 
+	stanje uredjaja
+	funkcija naplatnog mesta,onaj koji sedi,operater
+	kada rampa ne moze da se digne ili ne moze da se spusti 
+	on treba da ima mogucnost da iz svog softvera aktivira da se upali onaj X
+	koji oznacava da naplatno mesto ne radi 
+	
+	administrator unosi podatke o svemu naplatnim mestima i naplatnim stanicama
+	
+	operater naplatnog mesta on vrsi na-platu u smilsu da kad nailazi vozilo treba da izabere
+	tip vozila i odakle je dosao,i da vrati kusur kad obavi transakciju 
+
+izvestaj za broj vozila za rampu,ukupan naplacen iznos,izvestaj za kvarove
+	
+centralu zanima ukupno za sve stanice 
+
+ocekuje se dijagram analize zahteva gde se vide funkcionalni i nefunkcionalni zahtevi za softver
+svaki funk zahteva treba da se radi na jedan ili vise use-case-ova
+dijagram klasa u okviru kojeg se vidi state masine 
+dijagram prelaza stanja
+
+-- ova dva jedan po glavi clana tima  
+activity diagram
+dijagram sekvence
+
+
+
