@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logika.Prijavljivanje;
 import model.TipKorisnika;
@@ -29,7 +30,6 @@ public class PrijavljivanjeProzor extends VBox {
 	 private Label greska = new Label("");
 	 
 	 private Stage stage;
-	 
 	
 	public PrijavljivanjeProzor(Stage primaryStage)
 	{
@@ -40,7 +40,6 @@ public class PrijavljivanjeProzor extends VBox {
 		hbox2.getChildren().addAll(l2,tf2);
 		hbox1.setSpacing(50);
 		hbox2.setSpacing(95);
-		
 		hbox3.setPadding(new Insets(10,10,10,10));
 		hbox3.getChildren().add(greska);
 		
@@ -48,6 +47,8 @@ public class PrijavljivanjeProzor extends VBox {
 		hbox4.setSpacing(200);
 		
 		this.getChildren().addAll(hbox1,hbox2, hbox3,hbox4);
+		
+		greska.setTextFill(Color.RED);
 		
 		btn.setDisable(true);
 		dogadjajBtn();
@@ -96,10 +97,20 @@ public class PrijavljivanjeProzor extends VBox {
 		    	
 		    	Prijavljivanje pr = new Prijavljivanje();
 		    	
+		    	// obirsati
+		    	stage.hide();
+		    	OperaterProzor operaterProzor = new OperaterProzor();
+		    	stage.show();
+
+		    	
+		    	
 		    	TipKorisnika tip = pr.prijaviSe(tf1.getText(), tf2.getText());
 		    	if (tip != null)
 		    	{
 		    		stage.hide();
+		    		tf1.setText("");
+		    		tf2.setText("");
+		    		
 		    		switch (tip) {
 					case ADMINISTRATOR:
 					{
@@ -119,7 +130,8 @@ public class PrijavljivanjeProzor extends VBox {
 					}
 					case OPERATER:
 					{
-						OperaterProzor operaterProzor = new OperaterProzor();
+						//OperaterProzor operaterProzor = new OperaterProzor();
+						
 						break;
 					}
 					default:
@@ -133,4 +145,5 @@ public class PrijavljivanjeProzor extends VBox {
 		    }
 		});
 	}
+
 }
