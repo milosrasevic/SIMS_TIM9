@@ -103,6 +103,7 @@ public class PrijavljivanjeProzor extends VBox {
 		    	stage.show();
 
 		    	
+		    	
 		    	TipKorisnika tip = pr.prijaviSe(tf1.getText(), tf2.getText());
 		    	if (tip != null)
 		    	{
