@@ -20,7 +20,7 @@ public class Korisnik {
 	public String getKorisnickoIme() {
 		return korisnickoIme;
 	}
-
+	
 	public void setKorisnickoIme(String korisnickoIme) {
 		this.korisnickoIme = korisnickoIme;
 	}
@@ -28,7 +28,7 @@ public class Korisnik {
 	public String getLozinka() {
 		return lozinka;
 	}
-
+	
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	}
