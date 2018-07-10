@@ -1,0 +1,15 @@
+{
+	"korisnici": [{
+		"korisnickoIme": "Janko",
+		"lozinka": "a",
+		"tipKorisnika": "ADMINISTRATOR"
+	}, {
+		"korisnickoIme": "Marko",
+		"lozinka": "a",
+		"tipKorisnika": "OPERATER"
+	}, {
+		"korisnickoIme": "Petar",
+		"lozinka": "a",
+		"tipKorisnika": "SEF_STANICE"
+	}]
+}
