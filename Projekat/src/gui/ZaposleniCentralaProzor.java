@@ -25,6 +25,7 @@ public class ZaposleniCentralaProzor extends Stage{
 		this.setScene(new Scene(root,1000,500));
 		this.setMaximized(true);
 		this.initStyle(StageStyle.UTILITY);
+		this.setTitle("CENTRALA");
 		
 		root.setTop(hbox1);
 		hbox1.setStyle("-fx-background-color: #336699;");
