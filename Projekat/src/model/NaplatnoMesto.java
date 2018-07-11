@@ -8,6 +8,7 @@ public abstract class NaplatnoMesto {
 	private Rampa rampa;
 	private ArrayList<Kvar> kvarovi = new ArrayList<Kvar>();
 	private ArrayList<Prolazak> prolasci = new ArrayList<Prolazak>();
+	private ArrayList<Korisnik> zaposleniUMestu = new ArrayList<Korisnik>();
 
 	public NaplatnoMesto() {
 
@@ -26,6 +27,7 @@ public abstract class NaplatnoMesto {
 		this.kvarovi = kvarovi;
 	}
 	
+	//TODO : proveri nacin na koji se odredjuju zaposleni u mestu, i da li treba da postoje u konstruktoru
 	public NaplatnoMesto(int redniBroj, Rampa rampa, ArrayList<Kvar> kvarovi, ArrayList<Prolazak> prolasci) {
 		super();
 		this.redniBroj = redniBroj;
@@ -87,6 +89,14 @@ public abstract class NaplatnoMesto {
 
 	public void setProlasci(ArrayList<Prolazak> prolasci) {
 		this.prolasci = prolasci;
+	}
+
+	public ArrayList<Korisnik> getZaposleniUMestu() {
+		return zaposleniUMestu;
+	}
+
+	public void setZaposleniUMestu(ArrayList<Korisnik> zaposleniUMestu) {
+		this.zaposleniUMestu = zaposleniUMestu;
 	}
 	
 }

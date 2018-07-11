@@ -8,8 +8,9 @@ public class Centrala {
 	private ArrayList<Deonica> deonice = new ArrayList<Deonica>();
 	private ArrayList<NaplatnaStanica> naplatneStanice = new ArrayList<NaplatnaStanica>();
 	private ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
+	private ArrayList<Korisnik> zaposleniUCentrali = new ArrayList<Korisnik>();
 	
-	
+
 	private static Centrala centrala = null;
 	
 	
@@ -93,5 +94,12 @@ public class Centrala {
 	public static void setCentrala(Centrala centrala) {
 		Centrala.centrala = centrala;
 	}
-	
+
+	public ArrayList<Korisnik> getZaposleniUCentrali() {
+		return zaposleniUCentrali;
+	}
+
+	public void setZaposleniUCentrali(ArrayList<Korisnik> zaposleniUCentrali) {
+		this.zaposleniUCentrali = zaposleniUCentrali;
+	}
 }
