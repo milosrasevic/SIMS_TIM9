@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import logika.UpravljanjeFajlovima;
 
  
+
 public class Main extends Application {
     public static void main(String[] args) throws JsonGenerationException, JsonMappingException, IOException {
     	// TODO : proveri gde treba da stoji ovaj poziv za ucitavanje
