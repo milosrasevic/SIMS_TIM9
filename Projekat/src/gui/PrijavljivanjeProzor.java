@@ -97,12 +97,6 @@ public class PrijavljivanjeProzor extends VBox {
 		    	
 		    	Prijavljivanje pr = new Prijavljivanje();
 		    	
-		    	// obirsati
-		    	stage.hide();
-		    	OperaterProzor operaterProzor = new OperaterProzor();
-		    	stage.show();
-
-		    	
 		    	TipKorisnika tip = pr.prijaviSe(tf1.getText(), tf2.getText());
 		    	if (tip != null)
 		    	{
@@ -114,6 +108,7 @@ public class PrijavljivanjeProzor extends VBox {
 					case ADMINISTRATOR:
 					{
 						AdministratorProzor adminPr = new AdministratorProzor();
+						
 						break;	
 					}
 					
@@ -129,13 +124,15 @@ public class PrijavljivanjeProzor extends VBox {
 					}
 					case OPERATER:
 					{
-						//OperaterProzor operaterProzor = new OperaterProzor();
+						OperaterProzor operaterProzor = new OperaterProzor();
 						
 						break;
 					}
 					default:
 						break;
 					}
+		    		stage.show();
+		    		
 		    	}
 		    	else {
 		    		greska.setText("Pogresno korisnicko ime ili lozinka.");
