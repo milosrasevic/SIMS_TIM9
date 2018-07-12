@@ -1,39 +1,89 @@
 package gui;
 
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class OperaterProzor extends Stage{
-	private Button btn = new Button("Odjavi se");
-	private HBox hbox1 = new HBox();
+	private OperaterProzor prozor;
+	private BorderPane root;
+	private BorderPane naplataRoot;
+
+	private Label labelaNaziv = new Label("Naziv Stanice i Naziv Naplatnog mesta");
+	private Label labelaStanje = new Label("Stanje rampe");
+	private Button btnOdjava = new Button("Odjavi se");
+	private HBox hboxTop = new HBox();
+	private VBox vboxTop = new VBox();
+	private BorderPane bpTop = new BorderPane();
+	private Button btnNaplata = new Button("Naplata");
+	private Button btnIzvestaji = new Button("Izvestaji");
+	private Button btnRampa = new Button("Prinudno podizanje rampe");
+	private VBox vboxLeft = new VBox();
+	private BorderPane bpLeft = new BorderPane();
 	
 	public OperaterProzor()
 	{
-		OperaterProzor prozor = this;
+		podesiInterfejs();
+		podesiAkcije();
+		this.showAndWait();
+	}
+	
+	private  void podesiInterfejs()
+	{
+		prozor = this;
 		
-		BorderPane root = new BorderPane();
+		BorderPane bproot = new BorderPane();
+		root = bproot;
 		
 		this.setScene(new Scene(root,1000,500));
 		this.setMaximized(true);
-		this.initStyle(StageStyle.UTILITY);
+		this.initStyle(StageStyle.UNDECORATED);
 		this.setTitle("NAPLATNO MESTO");
+
+		podesiTop();
+		podesiLeft();
 		
-		root.setTop(hbox1);
-		hbox1.setStyle("-fx-background-color: #336699;");
-		hbox1.getChildren().add(btn);
-		hbox1.setAlignment(Pos.CENTER_RIGHT);
-		hbox1.setPadding(new Insets(10,10,10,0));
+		root.setTop(bpTop);
+		root.setLeft(bpLeft);
+	}
+	
+	private void podesiTop()
+	{
+		bpTop.setRight(hboxTop);
+		bpTop.setLeft(vboxTop);
 		
+		vboxTop.getChildren().add(labelaNaziv);
+		vboxTop.getChildren().add(labelaStanje);
 		
-		this.btn.setOnAction(new EventHandler<ActionEvent>() {
+		bpTop.setStyle("-fx-background-color: #336699;");
+		hboxTop.getChildren().add(btnOdjava);
+		hboxTop.setAlignment(Pos.CENTER_RIGHT);
+		hboxTop.setPadding(new Insets(10,10,10,0));
+	}
+	private void podesiLeft()
+	{
+		vboxLeft.setStyle("-fx-background-color: #336000;");
+		vboxLeft.getChildren().addAll(btnNaplata, btnIzvestaji);
+		btnNaplata.setMaxWidth(Double.MAX_VALUE);
+		btnIzvestaji.setMaxWidth(Double.MAX_VALUE);
+		btnRampa.setMaxWidth(Double.MAX_VALUE);
+		
+		bpLeft.setTop(vboxLeft);
+		bpLeft.setBottom(btnRampa);
+	}
+	
+	private void podesiAkcije() {
+		this.btnOdjava.setOnAction(new EventHandler<ActionEvent>() {
 			 
 		    @Override
 		    public void handle(ActionEvent e) {
@@ -41,7 +91,14 @@ public class OperaterProzor extends Stage{
 		    }
 		});
 		
-		this.showAndWait();
-		
+		this.btnNaplata.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	NaplataProzor naplataProzor = new NaplataProzor();
+		    	naplataRoot = naplataProzor;
+		    	root.setCenter(naplataProzor);
+		    }
+		});
 	}
 }

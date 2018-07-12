@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class NaplatnaStanica {
 	private String naziv;
 	private ArrayList<NaplatnoMesto> naplatnaMesta = new ArrayList<NaplatnoMesto>();
+	private ArrayList<Korisnik> zaposleniUStanici = new ArrayList<Korisnik>();
+	
 	
 	public NaplatnaStanica()
 	{
@@ -17,7 +19,7 @@ public class NaplatnaStanica {
 	}
 	
 	
-
+	//TODO : proveri nacin na koji se odredjuju zaposleni u stanici, i da li treba da postoje u konstruktoru
 	public NaplatnaStanica(String naziv, ArrayList<NaplatnoMesto> naplatnaMesta) {
 		super();
 		this.naziv = naziv;
@@ -65,5 +67,13 @@ public class NaplatnaStanica {
 		this.naplatnaMesta = naplatnaMesta;
 	}
 	
+	public ArrayList<Korisnik> getZaposleniUStanici() {
+		return zaposleniUStanici;
+	}
+
+	public void setZaposleniUStanici(ArrayList<Korisnik> zaposleniUStanici) {
+		this.zaposleniUStanici = zaposleniUStanici;
+	}
+
 	
 }
