@@ -116,9 +116,9 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		Image image2 = null;
 		
 		try {
-			image = new Image(new FileInputStream("./izvestaj.png"),140,140, false, false);
-			image1 = new Image(new FileInputStream("./kvar.png"),140,140, false, false);
-			image2 = new Image(new FileInputStream("./cena.png"),140,140, false, false);
+			image = new Image(new FileInputStream("./src/slike/izvestaj.png"),140,140, false, false);
+			image1 = new Image(new FileInputStream("./src/slike/kvar1.png"),140,140, false, false);
+			image2 = new Image(new FileInputStream("./src/slike/cena.png"),140,140, false, false);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
@@ -246,6 +246,12 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 			}			
 		});
 	}
+	
+	public void maximizeScene(){
+		this.sizeToScene();
+        this.setMaximized(false);
+        this.setMaximized(true);
+	}
 
 	@Override
 	public void handle(ActionEvent event) {
@@ -254,27 +260,19 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		}
 		if(event.getSource() == btn1){
 			this.setScene(scene2);
-			this.sizeToScene();
-            this.setMaximized(false);
-            this.setMaximized(true);
+			maximizeScene();
 		}
 		if(event.getSource() == btn2){
 			this.setScene(scene3);
-			this.sizeToScene();
-            this.setMaximized(false);
-            this.setMaximized(true);
+			maximizeScene();
 		}
 		if(event.getSource() == btn3){
 			this.setScene(scene4);
-			this.sizeToScene();
-            this.setMaximized(false);
-            this.setMaximized(true);
+			maximizeScene();
 		}
 		if(event.getSource() == backbtn || event.getSource() == backbtn1 || event.getSource() == backbtn2){
 			this.setScene(scene1);
-			this.sizeToScene();
-	        this.setMaximized(false);
-	        this.setMaximized(true);
+			maximizeScene();
 		}
 		
 	}
