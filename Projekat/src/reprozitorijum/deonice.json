@@ -1,0 +1,219 @@
+{
+"deonice" : [{
+	"ulaznaStanica": {
+		"naziv": "Subotica",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Novi Sad",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Novi Sad",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Beograd",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Beograd",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Smederevo",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Smederevo",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Jagodina",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Jagodina",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Paracin",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Paracin",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Nis",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Nis",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Leskovac",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Leskovac",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Vranje!",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Vranje!",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Leskovac",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Vranje!",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Leskovac",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Leskovac",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Nis",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Nis",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Paracin",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Paracin",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Jagodina",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Jagodina",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Smederevo",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Smederevo",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Beograd",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Beograd",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Novi Sad",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Novi Sad",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Subotica",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}, {
+	"ulaznaStanica": {
+		"naziv": "Subotica",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"izlaznaStanica": {
+		"naziv": "Novi Sad",
+		"naplatnaMesta": [],
+		"zaposleniUStanici": []
+	},
+	"cenovnici": []
+}]
+}
