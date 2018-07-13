@@ -2,7 +2,11 @@ package gui;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,11 +38,18 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private Button backbtn = new Button("Nazad");
 	private Button backbtn1 = new Button("Nazad");
 	private Button backbtn2 = new Button("Nazad");
+	private Button showbtn = new Button("Prikazi");
 	
 	private RadioButton rb = new RadioButton("Izvestaj za sve dane");
 	private RadioButton rb1 = new RadioButton("Izvestaj za odredjen vremenski period");
+	private RadioButton rb2 = new RadioButton("Ukupan naplacen iznos");
+	private RadioButton rb3 = new RadioButton("Broj vozila koja su prosla kroz stanicu");
+	
 	final ToggleGroup group = new ToggleGroup();
 	final DatePicker datepicker = new DatePicker();
+	final ToggleGroup group1 = new ToggleGroup();
+	
+	private TextArea ts = new TextArea();
 	
 	private HBox hbox1 = new HBox();
 	private HBox hbox2 = new HBox();
@@ -50,6 +62,10 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private HBox hbox9 = new HBox();
 	private HBox hbox10 = new HBox();
 	private HBox hboxtoggle = new HBox();
+	private HBox hboxtoggle1 = new HBox();
+	private HBox hboxlabela5 = new HBox();
+	private HBox hboxshow = new HBox();
+	private HBox hboxta = new HBox(); 
 	
 	private BorderPane root = new BorderPane();
 	private BorderPane root2 = new BorderPane();
@@ -62,11 +78,15 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private Scene scene4 = new Scene(root4,1000,500);
 	
 	private Label l1 = new Label("Uspesno ste se prijavili kao sef stanice. Odaberite akciju:");
-	private Label l2 = new Label("Pregled izvestaja");
+	private Label l2 = new Label("Pregled izvestaja. Odaberite vremenski period: ");
 	private Label l3 = new Label("Pregled kvarova");
 	private Label l4 = new Label("Izmena cena");
+	private Label l5 = new Label("Odaberite tip izvestaja: ");
 	
 	private VBox vbox = new VBox();
+	private VBox vboxtoggle = new VBox();
+	
+	Date date = new Date();
 	
 	public SefStaniceProzor()
 	{
@@ -75,6 +95,9 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		rb.setToggleGroup(group);
 		rb.setSelected(true);
 		rb1.setToggleGroup(group);
+		rb2.setToggleGroup(group1);
+		rb2.setSelected(true);
+		rb3.setToggleGroup(group1);
 		
 		this.setMaximized(true);
 		this.setResizable(false);
@@ -84,6 +107,10 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		l2.setStyle("-fx-text-fill: white; -fx-font: 21 arial;");
 		l3.setStyle("-fx-text-fill: white; -fx-font: 21 arial;");
 		l4.setStyle("-fx-text-fill: white; -fx-font: 21 arial;");
+		l5.setStyle("-fx-text-fill: white; -fx-font: 21 arial;");
+		hboxlabela5.setAlignment(Pos.CENTER);
+		hboxlabela5.setStyle("-fx-background-color: #336666");
+		//l5.setStyle("-fx-background-color: #336666");
 		
 		btn.setScaleX(1.5);
 		btn.setScaleY(1.5);
@@ -106,10 +133,17 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		backbtn2.setScaleX(1.5);
 		backbtn2.setScaleY(1.5);
 		
+		showbtn.setScaleX(1.7);
+		showbtn.setScaleY(1.7);
+		
 		rb.setScaleX(1.5);
 		rb.setScaleY(1.5);
 		rb1.setScaleX(1.5);
 		rb1.setScaleY(1.5);
+		rb2.setScaleX(1.5);
+		rb2.setScaleY(1.5);
+		rb3.setScaleX(1.5);
+		rb3.setScaleY(1.5);
 		
 		Image image = null;
 		Image image1 = null;
@@ -151,14 +185,51 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		hbox8.setAlignment(Pos.BOTTOM_CENTER);
 		
 		root2.setTop(hbox6);
-		root2.setCenter(hboxtoggle);
+		root2.setCenter(vboxtoggle);
+		
 		hboxtoggle.getChildren().add(rb);
 		hboxtoggle.getChildren().add(rb1);
+		
+		hboxtoggle1.getChildren().add(rb2);
+		hboxtoggle1.getChildren().add(rb3);
+		
+		hboxtoggle1.setAlignment(Pos.TOP_CENTER);
+		hboxtoggle1.setSpacing(130);
+		hboxtoggle1.setPadding(new Insets(20,296,20,0));
+		
+		
+		
 		datepicker.setDisable(true);
+		datepicker.setScaleX(1.2);
+		datepicker.setScaleY(1.2);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		datepicker.setValue(LOCAL_DATE("01-07-2018"));
+		
 		hboxtoggle.getChildren().add(datepicker);
+		
 		hboxtoggle.setAlignment(Pos.TOP_CENTER);
 		hboxtoggle.setSpacing(130);
 		hboxtoggle.setPadding(new Insets(20,20,20,0));
+		
+		hboxlabela5.getChildren().add(l5);
+		hboxshow.getChildren().add(showbtn);
+		hboxshow.setPadding(new Insets(30,20,20,0));
+		hboxshow.setAlignment(Pos.CENTER);
+		
+		vboxtoggle.getChildren().add(hboxtoggle);
+		vboxtoggle.getChildren().add(hboxlabela5);
+		vboxtoggle.getChildren().add(hboxtoggle1);
+		vboxtoggle.getChildren().add(hboxshow);
+		ts.setScaleX(2);
+		ts.setScaleY(2);
+		ts.setPrefHeight(300);
+		ts.setPrefWidth(920);
+		ts.setEditable(false);
+		
+		hboxta.setPadding(new Insets(200,20,20,500));
+		hboxta.getChildren().add(ts);
+		vboxtoggle.getChildren().add(hboxta);
 		
 		root3.setTop(hbox7);
 		root4.setTop(hbox8);
@@ -220,10 +291,16 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		this.backbtn.setOnAction(this);
 		this.backbtn1.setOnAction(this);
 		this.backbtn2.setOnAction(this);
-			
+		this.showbtn.setOnAction(this);	
 		dogadjajKalendar();
 		
 		this.showAndWait();
+	}
+	
+	public static final LocalDate LOCAL_DATE (String dateString){
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	    LocalDate localDate = LocalDate.parse(dateString, formatter);
+	    return localDate;
 	}
 	
 	public void dogadjajKalendar(){
@@ -253,6 +330,7 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
         this.setMaximized(true);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void handle(ActionEvent event) {
 		if(event.getSource() == btn){
@@ -273,6 +351,29 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		if(event.getSource() == backbtn || event.getSource() == backbtn1 || event.getSource() == backbtn2){
 			this.setScene(scene1);
 			maximizeScene();
+		}
+		if(event.getSource() == showbtn){
+			if(this.group.getSelectedToggle() == this.rb){
+				if(this.group1.getSelectedToggle() == this.rb2){
+					this.ts.appendText("Izvestaj ukupnog naplacenog iznosa\n");
+				}
+				else{
+					this.ts.appendText("Izvestaj broja vozila koja su prosla\n");
+				}	
+			}
+			else{
+				
+				LocalDate localDate = this.datepicker.getValue();
+				Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+				this.date = Date.from(instant);
+				
+				if(this.group1.getSelectedToggle() == this.rb2){
+					this.ts.appendText("Izvestaj ukupnog naplacenog iznosa od datuma: " + this.date.getDate() + '/'+ (this.date.getMonth() + 1) + '/'+ (this.date.getYear() + 1900) + "\n");
+				}
+				else{
+					this.ts.appendText("Izvestaj broja vozila koja su prosla od datuma: " + this.date.getDate() + '/'+ (this.date.getMonth() + 1) + '/'+ (this.date.getYear() + 1900) + "\n");
+				}
+			}
 		}
 		
 	}
