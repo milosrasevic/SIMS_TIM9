@@ -98,6 +98,8 @@ public class PrijavljivanjeProzor extends VBox {
 		    	Prijavljivanje pr = new Prijavljivanje();
 		    	
 		    	TipKorisnika tip = pr.prijaviSe(tf1.getText(), tf2.getText());
+		    	String username = tf1.getText();
+		    	String password = tf2.getText();
 		    	if (tip != null)
 		    	{
 		    		stage.hide();
@@ -119,7 +121,7 @@ public class PrijavljivanjeProzor extends VBox {
 					}
 					case SEF_STANICE:
 					{
-						SefStaniceProzor sefStaniceProzor = new SefStaniceProzor();
+						SefStaniceProzor sefStaniceProzor = new SefStaniceProzor(username,password);
 						break;
 					}
 					case OPERATER:
