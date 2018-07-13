@@ -55,6 +55,25 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 	private BorderPane stanice_layout = new BorderPane();
 	private BorderPane mesta_layout = new BorderPane();
 	
+	// DUGMAD PROZORA ZA IZVESTAJE MESTA
+	private ComboBox lista_stanica_mesto = new ComboBox<>();
+	private Button btn_broj_vozila_mesto = new Button("Broj vozila");
+	private Button btn_naplaceni_iznos_mesto = new Button("Naplaceni iznos");
+	private Button btn_kvarovi_mesto = new Button("Kvarovi");
+	private Button btn_broj_vozila_period_mesto = new Button("Broj vozila period");
+	private Button btn_nazad_mesto = new Button("NAZAD");
+	private Label tekst_zaglavlja_mesta = new Label("  STANICA");
+	private Label tekst_zaglavlja_mesta2 = new Label("  MESTO");
+	private ComboBox lista_mesta = new ComboBox<>();
+	private HBox zaglavlje_mesta = new HBox(150);
+	private HBox ikonice_mesta = new HBox(120);
+	private HBox dugmad_mesta = new HBox(120);
+	private HBox podglavlje_mesta = new HBox();
+	private VBox vbox_mesta = new VBox();
+	
+	
+	
+	
 	private Scene osnovnaScena = new Scene(osnovni_layout,1000,500);
 	private Scene izvestajiStanicaScena = new Scene(stanice_layout,1000,500);
 	private Scene izvestajiMestaScena = new Scene(mesta_layout,1000,500);
@@ -74,15 +93,6 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 		zaglavlje.getChildren().add(btn_odjava);
 		zaglavlje.setAlignment(Pos.CENTER_RIGHT);
 		zaglavlje.setPadding(new Insets(10,10,10,0));
-
-		
-//		Image image = new Image(new File("src/slike/izvestaji.png").toURI().toString());
-//		ImageView iv = new ImageView();
-//		iv.setImage(image);
-//		ikonice.getChildren().add(iv);
-//		ikonice.setAlignment(Pos.CENTER);
-//		vbox1.getChildren().add(ikonice);
-//		
 		
 		btn_IzvestajiStanice.setStyle("-fx-font: 18 arial; -fx-base: #b6e7c9;");
 		btn_IzvestajiStanice.setPrefSize(400, 500);
@@ -108,23 +118,11 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 				listaNazivaDeonica.add(deonica.getUlaznaStanica().getNaziv());
 			}
 		}
-		lista_stanica.getItems().addAll( listaNazivaDeonica);
+		lista_stanica.getItems().addAll(listaNazivaDeonica);
 		zaglavlje_stanica.setAlignment(Pos.CENTER);
 		zaglavlje_stanica.setStyle("-fx-background-color: #336699;");
 		zaglavlje_stanica.getChildren().addAll(tekst_zaglavlja_stanice, lista_stanica);
 		
-		ImageView[] imageView = new ImageView[3];
-		
-		imageView[0] = new ImageView(); imageView[0].setImage(new Image(new File("src/slike/automobil.jpg").toURI().toString()));
-		imageView[1] = new ImageView(); imageView[1].setImage(new Image(new File("src/slike/kes.png").toURI().toString()));
-		imageView[2] = new ImageView(); imageView[2].setImage(new Image(new File("src/slike/kvar.png").toURI().toString()));
-		for(int i = 0; i < 3; i++) {
-			imageView[i].setFitHeight(100);
-			imageView[i].setFitWidth(100);
-		}
-//		ikonice_stanice.getChildren().addAll(imageView[0], imageView[1], imageView[2]);
-//		ikonice_stanice.setAlignment(Pos.CENTER);
-//		vbox_stanice.getChildren().add(ikonice_stanice);
 		
 		btn_broj_vozila.setPrefSize(400, 500);
 		btn_naplaceni_iznos.setPrefSize(400, 500);
@@ -145,7 +143,40 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 		stanice_layout.setTop(zaglavlje_stanica);
 		stanice_layout.setBottom(podglavlje_stanica);
 		
+		// SCENA ZA IZVESTAJE MESTA
+		//**********************************************************************************************
+		tekst_zaglavlja_mesta.setStyle("-fx-font: 50 arial; -fx-base: #b6e7c9;");
+		tekst_zaglavlja_mesta2.setStyle("-fx-font: 50 arial; -fx-base: #b6e7c9;");
+		lista_mesta.setStyle("-fx-font: 30 arial; -fx-base: #b6e7c9;");
+		lista_stanica_mesto.setStyle("-fx-font: 30 arial; -fx-base: #b6e7c9;");
+		ArrayList<String> listaNazivaMesta = new ArrayList<>(); 
 		
+		
+		lista_stanica_mesto.getItems().addAll(listaNazivaDeonica);
+		lista_mesta.getItems().addAll(listaNazivaMesta);
+		zaglavlje_mesta.setAlignment(Pos.CENTER);
+		zaglavlje_mesta.setStyle("-fx-background-color: #336699;");
+		zaglavlje_mesta.getChildren().addAll(tekst_zaglavlja_mesta ,lista_stanica_mesto, tekst_zaglavlja_mesta2, lista_mesta);
+		
+		
+		btn_broj_vozila_mesto.setPrefSize(400, 500);
+		btn_naplaceni_iznos_mesto.setPrefSize(400, 500);
+		btn_broj_vozila_period_mesto.setPrefSize(400, 500);
+		btn_kvarovi_mesto.setPrefSize(400, 500);
+		btn_broj_vozila_mesto.setStyle("-fx-font: 25 arial; -fx-base: #b6e7c9;");	btn_naplaceni_iznos_mesto.setStyle("-fx-font: 25 arial; -fx-base: #b6e7c9;");
+		btn_kvarovi_mesto.setStyle("-fx-font: 25 arial; -fx-base: #b6e7c9;");	btn_broj_vozila_period_mesto.setStyle("-fx-font: 25 arial; -fx-base: #b6e7c9;");
+		dugmad_mesta.getChildren().addAll(btn_broj_vozila_mesto, btn_naplaceni_iznos_mesto, btn_kvarovi_mesto, btn_broj_vozila_period_mesto);
+		dugmad_mesta.setAlignment(Pos.CENTER);
+		vbox_mesta.getChildren().add(dugmad_mesta);
+		
+		podglavlje_mesta.setAlignment(Pos.BOTTOM_CENTER);
+		btn_nazad_mesto.setStyle("-fx-font: 100 arial; -fx-base: #b6e7c9;");
+		podglavlje_mesta.getChildren().add(btn_nazad_mesto);
+		
+		
+		mesta_layout.setCenter(vbox_mesta);
+		mesta_layout.setTop(zaglavlje_mesta);
+		mesta_layout.setBottom(podglavlje_mesta);
 		
 		
 		btn_IzvestajiStanice.setOnAction(this);
