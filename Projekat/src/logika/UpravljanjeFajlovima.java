@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Centrala;
+import model.Deonica;
+import model.Deonice;
 import model.Korisnici;
 import model.Korisnik;
 
@@ -17,11 +19,30 @@ public class UpravljanjeFajlovima {
 	// TODO metode bacaju izuzetke, mozda ih treba obraditi sa try catch
 	
 	static String fajl_korisnici = "src/reprozitorijum/korisnici.json";
+	static String fajl_deonice = "src/reprozitorijum/deonice.json";
 	static ObjectMapper mapper = new ObjectMapper();
 	
 	static Centrala centrala = Centrala.getInstance();
 	static Korisnici korisnici = Korisnici.getInstance();
+	static Deonice deonice = Deonice.getInstance();
 	
+	public void ucitajDeonice() throws JsonParseException, JsonMappingException, IOException {
+		deonice = mapper.readValue(new File(fajl_deonice), Deonice.class);
+		centrala.setDeonice(deonice.getDeonice());
+	}
+	
+	public void azurirajDeonice(ArrayList<Deonica> listaDeonica) throws JsonParseException, JsonMappingException, IOException {
+		mapper.writeValue(new File(fajl_deonice), listaDeonica);
+	}
+	
+	public void dodajDeonicu(Deonica d) throws JsonParseException, JsonMappingException, IOException {
+		ArrayList<Deonica> listaDeonica = centrala.getDeonice();
+		listaDeonica.add(d);
+		centrala.setDeonice(listaDeonica);
+
+		deonice.setDeonice(listaDeonica);
+		azurirajDeonice(deonice.getDeonice());
+	}
 	public void ucitajKorisnike() throws JsonParseException, JsonMappingException, IOException {
 		/*
 		 * Cita korisnike iz json fajla i mapira ih prvo na klasu Korisnici, a zatim napuni
@@ -47,8 +68,6 @@ public class UpravljanjeFajlovima {
 		lista_korisnika.add(korisnik);
 		korisnici.setKorisnici(lista_korisnika);
 		
-		ArrayList<Korisnik> lista_korisnika_centrale = centrala.getKorisnici();
-		lista_korisnika_centrale.add(korisnik);
 		centrala.setKorisnici(lista_korisnika);
 		
 		azurirajKorisnike(korisnici.getKorisnici());

@@ -1,18 +1,22 @@
 package gui;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logika.UpravljanjeFajlovima;
+import model.Deonica;
+import model.Deonice;
+import model.NaplatnaStanica;
 
  
 
@@ -21,6 +25,8 @@ public class Main extends Application {
     	// TODO : proveri gde treba da stoji ovaj poziv za ucitavanje
     	UpravljanjeFajlovima uf = new UpravljanjeFajlovima();
     	uf.ucitajKorisnike();
+    	
+    	uf.ucitajDeonice();
         launch(args);
     }
     

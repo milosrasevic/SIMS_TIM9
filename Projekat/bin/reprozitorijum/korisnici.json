@@ -11,5 +11,9 @@
 		"korisnickoIme": "Petar",
 		"lozinka": "a",
 		"tipKorisnika": "SEF_STANICE"
+	},{
+		"korisnickoIme": "s",
+		"lozinka": "s",
+		"tipKorisnika": "ZAPOSLENI_CENTRALA"
 	}]
 }
