@@ -39,17 +39,21 @@ public class AdministratorProzor extends Stage implements EventHandler<ActionEve
 	private HBox dugmad = new HBox(50);
 	private VBox vbox1 = new VBox(100);
 	
-	
-	// DUGMAD PROZORA ZA IZVESTAJE STANICA
-	
+	// RAD SA KORISNICIMA
+	private Button btn_dodaj_korisnika = new Button("DODAJ KORISNIKA");
+	private Button btn_izmeni_korisnika = new Button("IZMENI KORISNIKA");
+	private Button btn_obrisi_korisnika = new Button("OBRISI KORISNIKA");
 	private Button btn_nazad = new Button("Nazad");
 	
-	
+	private HBox centar_korisnici = new HBox(100);
+	private VBox centar_dugmad_korisnici = new VBox();
+	private HBox podglavlje_korisnici = new HBox();
+
 	private BorderPane osnovni_layout = new BorderPane();
-	
+	private BorderPane korisnici_layout = new BorderPane();
 	
 	private Scene osnovnaScena = new Scene(osnovni_layout,1000,500);
-	
+	private Scene scena_rad_sa_korisnicima = new Scene(korisnici_layout, 1000,500);
 	
 	public AdministratorProzor()
 	{
@@ -86,13 +90,41 @@ public class AdministratorProzor extends Stage implements EventHandler<ActionEve
 		
 		osnovni_layout.setCenter(vbox1);
 		vbox1.setAlignment(Pos.CENTER_RIGHT);
-		
+
 		
 		btn_rad_sa_korisnicima.setOnAction(this);
 		btn_rad_sa_deonicama.setOnAction(this);
 		btn_odjava.setOnAction(this);
 		btn_rad_sa_stanicama.setOnAction(this);
 		btn_rad_sa_cenovnicina.setOnAction(this);
+		// RAD SA KORISNICIMA
+		
+		btn_dodaj_korisnika.setStyle("-fx-font: 18 arial; -fx-base: #b6e7c9;");
+		btn_izmeni_korisnika.setStyle("-fx-font: 18 arial; -fx-base: #b6e7c9;");
+		btn_obrisi_korisnika.setStyle("-fx-font: 18 arial; -fx-base: #b6e7c9;");
+		btn_nazad.setStyle("-fx-font: 18 arial; -fx-base: #b6e7c9;");
+		
+		
+		btn_dodaj_korisnika.setPrefSize(400, 500);
+		btn_izmeni_korisnika.setPrefSize(400, 500);
+		btn_obrisi_korisnika.setPrefSize(400, 500);
+		btn_nazad.setPrefSize(400, 500);
+		
+		centar_korisnici.getChildren().addAll(btn_dodaj_korisnika, btn_izmeni_korisnika, btn_obrisi_korisnika);
+		centar_korisnici.setAlignment(Pos.CENTER);
+		centar_dugmad_korisnici.getChildren().add(centar_korisnici);
+		centar_dugmad_korisnici.setAlignment(Pos.CENTER_RIGHT);
+		
+		podglavlje_korisnici.getChildren().add(btn_nazad);
+		korisnici_layout.setBottom(podglavlje_korisnici);
+		korisnici_layout.setCenter(centar_dugmad_korisnici);
+		
+		
+		btn_dodaj_korisnika.setOnAction(this);
+		btn_izmeni_korisnika.setOnAction(this);
+		btn_obrisi_korisnika.setOnAction(this);
+		btn_nazad.setOnAction(this);
+		
 
 		this.showAndWait();
 		
@@ -102,7 +134,7 @@ public class AdministratorProzor extends Stage implements EventHandler<ActionEve
 		if(event.getSource() == btn_odjava) {
 			this.close();
 		}else if(event.getSource() == btn_rad_sa_korisnicima) {
-			
+			this.setScene(scena_rad_sa_korisnicima);
 			obradiVelicinu();
 		}else if(event.getSource() == btn_rad_sa_deonicama) {
 			
@@ -111,6 +143,15 @@ public class AdministratorProzor extends Stage implements EventHandler<ActionEve
 			
 		}else if(event.getSource() == btn_rad_sa_cenovnicina) {
 			
+		}else if(event.getSource() == btn_dodaj_korisnika) {
+			
+		}else if(event.getSource() == btn_izmeni_korisnika) {
+			
+		}else if(event.getSource() == btn_obrisi_korisnika) {
+			
+		}else if(event.getSource() == btn_nazad) {
+			this.setScene(osnovnaScena);
+			obradiVelicinu();
 		}
 	}
 	public void obradiVelicinu() {

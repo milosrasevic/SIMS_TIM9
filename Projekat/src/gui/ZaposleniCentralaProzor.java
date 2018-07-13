@@ -208,10 +208,10 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 			
 		}else if(event.getSource() == btn_broj_vozila_period) {
 			
-		}else if(event.getSource() == btn_nazad) {
+		}else if(event.getSource() == btn_nazad_mesto) {
 			this.setScene(osnovnaScena);
 			obradiVelicinu();
-		}else if(event.getSource() == btn_nazad_mesto) {
+		}else if(event.getSource() == btn_nazad) {
 			this.setScene(osnovnaScena);
 			obradiVelicinu();
 		}
