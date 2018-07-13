@@ -1,12 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NaplatnaStanica {
 	private String naziv;
 	private ArrayList<NaplatnoMesto> naplatnaMesta = new ArrayList<NaplatnoMesto>();
 	private ArrayList<Korisnik> zaposleniUStanici = new ArrayList<Korisnik>();
-	
 	
 	public NaplatnaStanica()
 	{
@@ -34,9 +34,42 @@ public class NaplatnaStanica {
 		this.naziv = naziv;
 	}
 	
-	public static void pregledajIzvestaje()
+	
+	public double pregledajIzvestaje(int x,Date datum)
 	{
+		double suma = 0;
+		if(x == 1){
+			for(NaplatnoMesto nm : naplatnaMesta){
+				for(Prolazak p : nm.getProlasci()){
+					suma += p.getIznos();
+				}
+			}
+		}
+		if(x == 2){
+			for(NaplatnoMesto nm : naplatnaMesta){
+				for(Prolazak p : nm.getProlasci()){
+					suma++;
+				}
+			}
+		}
+		if(x == 3){
+			for(NaplatnoMesto nm : naplatnaMesta){
+				for(Prolazak p : nm.getProlasci()){
+					if(p.getVreme().after(datum) )
+					suma += p.getIznos();
+				}
+			}
+		}
+		if(x == 4){
+			for(NaplatnoMesto nm : naplatnaMesta){
+				for(Prolazak p : nm.getProlasci()){
+					if(p.getVreme().after(datum) )
+					suma ++;
+				}
+			}
+		}
 		
+		return suma;
 	}
 	public static void promeniCenovnik()
 	{
@@ -75,5 +108,12 @@ public class NaplatnaStanica {
 		this.zaposleniUStanici = zaposleniUStanici;
 	}
 
-	
+	public Korisnik getSef(){
+		for(Korisnik k : zaposleniUStanici){
+			if(k.getTipKorisnika() == TipKorisnika.SEF_STANICE){
+				return k;
+			}
+		}
+		return null;
+	}
 }

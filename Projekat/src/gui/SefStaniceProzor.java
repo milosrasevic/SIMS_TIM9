@@ -28,6 +28,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Centrala;
+import model.Korisnik;
+import model.NaplatnaStanica;
 
 public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>{
 	
@@ -86,11 +89,19 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private VBox vbox = new VBox();
 	private VBox vboxtoggle = new VBox();
 	
+	private String korisnicko;
+	private String lozinka;
+	
 	Date date = new Date();
 	
-	public SefStaniceProzor()
+	Centrala centrala = Centrala.getInstance();
+	
+	public SefStaniceProzor(String user, String pass)
 	{
 		SefStaniceProzor prozor = this;
+		
+		this.korisnicko = user;
+		this.lozinka = pass;
 		
 		rb.setToggleGroup(group);
 		rb.setSelected(true);
@@ -330,6 +341,16 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
         this.setMaximized(true);
 	}
 
+	public NaplatnaStanica dobaviNaplatnuStanicu(){
+		for(NaplatnaStanica ns : centrala.getNaplatneStanice()){
+			Korisnik sef = ns.getSef();
+			if(sef.getKorisnickoIme().equalsIgnoreCase(this.korisnicko) && sef.getLozinka().equalsIgnoreCase(this.lozinka)){
+				return ns;
+			}
+		}
+		return null;
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void handle(ActionEvent event) {
@@ -355,10 +376,12 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		if(event.getSource() == showbtn){
 			if(this.group.getSelectedToggle() == this.rb){
 				if(this.group1.getSelectedToggle() == this.rb2){
-					this.ts.appendText("Izvestaj ukupnog naplacenog iznosa\n");
+					double iznos = pozivIzvestaja(dobaviNaplatnuStanicu(),true,true,this.date);
+					this.ts.appendText("Ukupan naplacen iznos je: " + iznos + "\n");
 				}
 				else{
-					this.ts.appendText("Izvestaj broja vozila koja su prosla\n");
+					double iznos = pozivIzvestaja(dobaviNaplatnuStanicu(),true,false,this.date);
+					this.ts.appendText("Broj vozila koja su prosla je: " + iznos + "\n");
 				}	
 			}
 			else{
@@ -368,13 +391,36 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 				this.date = Date.from(instant);
 				
 				if(this.group1.getSelectedToggle() == this.rb2){
-					this.ts.appendText("Izvestaj ukupnog naplacenog iznosa od datuma: " + this.date.getDate() + '/'+ (this.date.getMonth() + 1) + '/'+ (this.date.getYear() + 1900) + "\n");
+					double iznos = pozivIzvestaja(dobaviNaplatnuStanicu(),false,true,this.date);
+					this.ts.appendText("Ukupan naplacen iznos od datuma: " + this.date.getDate() + '/'+ (this.date.getMonth() + 1) + '/'+ (this.date.getYear() + 1900) + " je " + iznos + "\n");
 				}
 				else{
-					this.ts.appendText("Izvestaj broja vozila koja su prosla od datuma: " + this.date.getDate() + '/'+ (this.date.getMonth() + 1) + '/'+ (this.date.getYear() + 1900) + "\n");
+					double iznos = pozivIzvestaja(dobaviNaplatnuStanicu(),false,false,this.date);
+					this.ts.appendText("Ukupan broj vozila koja su prosla od datuma: " + this.date.getDate() + '/'+ (this.date.getMonth() + 1) + '/'+ (this.date.getYear() + 1900) + " je " + iznos + "\n");
 				}
 			}
 		}
 		
+	}
+	
+	public double pozivIzvestaja(NaplatnaStanica ns, Boolean arg1, Boolean arg2,Date datum){
+		double suma = 0;
+		if(arg1){
+			if(arg2){
+				suma = ns.pregledajIzvestaje(1,datum);
+			}
+			else{
+				suma = ns.pregledajIzvestaje(2,datum);
+			}
+		}
+		else{
+			if(arg2){
+				suma = ns.pregledajIzvestaje(3,datum);
+			}
+			else{
+				suma = ns.pregledajIzvestaje(4,datum);
+			}
+		}
+		return suma;
 	}
 }
