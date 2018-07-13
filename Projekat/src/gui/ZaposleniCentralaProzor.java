@@ -211,6 +211,9 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 		}else if(event.getSource() == btn_nazad) {
 			this.setScene(osnovnaScena);
 			obradiVelicinu();
+		}else if(event.getSource() == btn_nazad_mesto) {
+			this.setScene(osnovnaScena);
+			obradiVelicinu();
 		}
 	}
 	public void obradiVelicinu() {
