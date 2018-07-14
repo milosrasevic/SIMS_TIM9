@@ -1,1 +1,19 @@
+<<<<<<< HEAD
 {"korisnici":[{"korisnickoIme":"a","lozinka":"a","tipKorisnika":"ADMINISTRATOR"},{"korisnickoIme":"Marko","lozinka":"a","tipKorisnika":"OPERATER"},{"korisnickoIme":"Petar","lozinka":"a","tipKorisnika":"SEF_STANICE"},{"korisnickoIme":"s","lozinka":"s","tipKorisnika":"ZAPOSLENI_CENTRALA"}]}
+=======
+{
+	"korisnici": [{
+		"korisnickoIme": "a",
+		"lozinka": "a",
+		"tipKorisnika": "ADMINISTRATOR"
+	}, {
+		"korisnickoIme": "s",
+		"lozinka": "s",
+		"tipKorisnika": "OPERATER"
+	}, {
+		"korisnickoIme": "Petar",
+		"lozinka": "a",
+		"tipKorisnika": "SEF_STANICE"
+	}]
+}
+>>>>>>> Stefan

@@ -38,6 +38,24 @@ public enum TipVozila {
 		}
 		
 		return "";
-		
+	}
+	
+	public static TipVozila strToTip(String s)
+	{
+		switch (s) {
+		case "K1A":
+			return 	K1A;
+		case "K1":
+			return K1;
+		case "K2":
+			return K2;
+		case "K3":
+			return K3;
+		case "K4":
+			return K4;
+
+		default:
+			return null;
+		}
 	}
 }
