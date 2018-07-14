@@ -33,9 +33,10 @@ public class UpravljanjeFajlovima {
 	public void ucitajStanice() throws JsonParseException, JsonMappingException, IOException {
 		naplatne_stanice = mapper.readValue(new File(fajl_naplatne_stanice), NaplatneStanice.class);
 		centrala.setNaplatneStanice(naplatne_stanice.getNaplatne_stanice());
+		azurirajStanice(naplatne_stanice);
 	}
 	
-	public void azurirajStanice(ArrayList<NaplatnaStanica> naplatneStanice) throws JsonGenerationException, JsonMappingException, IOException {
+	public void azurirajStanice(NaplatneStanice naplatneStanice) throws JsonGenerationException, JsonMappingException, IOException {
 		mapper.writeValue(new File(fajl_naplatne_stanice), naplatneStanice);
 	}
 	public void dodajStanicu(NaplatnaStanica st) throws JsonGenerationException, JsonMappingException, IOException {
@@ -44,7 +45,7 @@ public class UpravljanjeFajlovima {
 		centrala.setNaplatneStanice(naplatnaStanica);
 
 		naplatne_stanice.setNaplatne_stanice(naplatnaStanica);
-		azurirajStanice(naplatne_stanice.getNaplatne_stanice());
+		azurirajStanice(naplatne_stanice);
 	}
 	
 	public void ucitajDeonice() throws JsonParseException, JsonMappingException, IOException {
@@ -52,8 +53,8 @@ public class UpravljanjeFajlovima {
 		centrala.setDeonice(deonice.getDeonice());
 	}
 	
-	public void azurirajDeonice(ArrayList<Deonica> listaDeonica) throws JsonParseException, JsonMappingException, IOException {
-		mapper.writeValue(new File(fajl_deonice), listaDeonica);
+	public void azurirajDeonice(Deonice deonice) throws JsonParseException, JsonMappingException, IOException {
+		mapper.writeValue(new File(fajl_deonice), deonice);
 	}
 	
 	public void dodajDeonicu(Deonica d) throws JsonParseException, JsonMappingException, IOException {
@@ -62,7 +63,7 @@ public class UpravljanjeFajlovima {
 		centrala.setDeonice(listaDeonica);
 
 		deonice.setDeonice(listaDeonica);
-		azurirajDeonice(deonice.getDeonice());
+		azurirajDeonice(deonice);
 	}
 	public void ucitajKorisnike() throws JsonParseException, JsonMappingException, IOException {
 		/*
@@ -71,14 +72,15 @@ public class UpravljanjeFajlovima {
 		 * */
 		korisnici = mapper.readValue(new File(fajl_korisnici), Korisnici.class);
 		centrala.setKorisnici(korisnici.getKorisnici());
+		azurirajKorisnike(korisnici);
 	}
 	
-	public void azurirajKorisnike(ArrayList<Korisnik> listaKorisnika) throws JsonGenerationException, JsonMappingException, IOException {
+	public void azurirajKorisnike(Korisnici korisnici) throws JsonGenerationException, JsonMappingException, IOException {
 		/*
 		 * Upisuje korisnike u json fajl
 		 * listaKorisnika - lista korisnika koje treba sacuvati
 		 * */
-		mapper.writeValue(new File(fajl_korisnici), listaKorisnika);
+		mapper.writeValue(new File(fajl_korisnici), korisnici);
 	}
 	
 	public void dodajKorisnika(Korisnik korisnik) throws JsonGenerationException, JsonMappingException, IOException {
@@ -91,12 +93,12 @@ public class UpravljanjeFajlovima {
 		
 		centrala.setKorisnici(lista_korisnika);
 		
-		azurirajKorisnike(korisnici.getKorisnici());
+		azurirajKorisnike(korisnici);
 	}
 	
 	public void obrisiKorisnika(Korisnik korisnik) throws JsonGenerationException, JsonMappingException, IOException {
 		korisnici.getKorisnici().remove(korisnik);
 		centrala.getKorisnici().remove(korisnik);
-		azurirajKorisnike(korisnici.getKorisnici());
+		azurirajKorisnike(korisnici);
 	}
 }
