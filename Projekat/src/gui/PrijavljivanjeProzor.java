@@ -95,7 +95,9 @@ public class PrijavljivanjeProzor extends VBox {
 		    	
 		    	Prijavljivanje pr = new Prijavljivanje();
 		    	
-		    	Korisnik korisnik = pr.prijaviSe(tf1.getText(), tf2.getText());
+		    	String username = tf1.getText();
+		    	String password = tf2.getText();
+		    	Korisnik korisnik = pr.prijaviSe(username, password);
 		    	if (korisnik != null)
 		    	{
 		    		stage.hide();
