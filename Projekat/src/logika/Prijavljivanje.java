@@ -6,7 +6,7 @@ import model.TipKorisnika;
 
 public class Prijavljivanje {
 	
-	public static TipKorisnika prijaviSe(String korisnickoIme, String lozinka)
+	public static Korisnik prijaviSe(String korisnickoIme, String lozinka)
 	{
 		Centrala centrala = Centrala.getInstance();
 		
@@ -14,7 +14,7 @@ public class Prijavljivanje {
 			if (korisnik.getKorisnickoIme().equals(korisnickoIme) &&
 					korisnik.getLozinka().equals(lozinka))
 			{
-				return korisnik.getTipKorisnika();
+				return korisnik;
 			}
 		}
 		return null;

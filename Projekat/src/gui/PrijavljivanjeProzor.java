@@ -1,6 +1,5 @@
 package gui;
 
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -15,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logika.Prijavljivanje;
-import model.TipKorisnika;
+import model.Korisnik;
 
 public class PrijavljivanjeProzor extends VBox {
 	 private TextField tf1 = new TextField();
@@ -47,7 +46,6 @@ public class PrijavljivanjeProzor extends VBox {
 		hbox4.setSpacing(200);
 		
 		this.getChildren().addAll(hbox1,hbox2, hbox3,hbox4);
-		
 		greska.setTextFill(Color.RED);
 		
 		btn.setDisable(true);
@@ -97,16 +95,16 @@ public class PrijavljivanjeProzor extends VBox {
 		    	
 		    	Prijavljivanje pr = new Prijavljivanje();
 		    	
-		    	TipKorisnika tip = pr.prijaviSe(tf1.getText(), tf2.getText());
 		    	String username = tf1.getText();
 		    	String password = tf2.getText();
-		    	if (tip != null)
+		    	Korisnik korisnik = pr.prijaviSe(username, password);
+		    	if (korisnik != null)
 		    	{
 		    		stage.hide();
 		    		tf1.setText("");
 		    		tf2.setText("");
 		    		
-		    		switch (tip) {
+		    		switch (korisnik.getTipKorisnika()) {
 					case ADMINISTRATOR:
 					{
 						AdministratorProzor adminPr = new AdministratorProzor();
@@ -126,7 +124,7 @@ public class PrijavljivanjeProzor extends VBox {
 					}
 					case OPERATER:
 					{
-						OperaterProzor operaterProzor = new OperaterProzor();
+						OperaterProzor operaterProzor = new OperaterProzor(korisnik);
 						
 						break;
 					}

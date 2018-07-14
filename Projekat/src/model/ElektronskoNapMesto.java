@@ -8,8 +8,8 @@ public class ElektronskoNapMesto extends NaplatnoMesto {
 	}
 	
 	@Override
-	public void naplati() {
-		// TODO Auto-generated method stub
+	public boolean naplati(TipVozila tipVozila, Valuta valuta, NaplatnaStanica ulaz) {
+		return true;
 
 	}
 	
