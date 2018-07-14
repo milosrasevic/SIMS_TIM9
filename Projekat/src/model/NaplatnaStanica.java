@@ -102,9 +102,15 @@ public class NaplatnaStanica {
 	{
 		
 	}
-	public static void pregledajKvarove()
+	public ArrayList<String> pregledajKvarove()
 	{
-		
+		ArrayList<String> kvarovi = null;
+		for(NaplatnoMesto nm : naplatnaMesta){
+			for(Kvar k : nm.getKvarovi()){
+				kvarovi.add("Vrsta kvara : " + k.getVrstaKvara().toString() + " Vreme kvara: " + k.getVreme().toString());
+			}
+		}
+		return kvarovi;
 	}
 	public static void dodajNaplatnoMesto()
 	{
