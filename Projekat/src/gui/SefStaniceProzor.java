@@ -76,9 +76,9 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private BorderPane root4 = new BorderPane();
 	
 	private Scene scene1 = new Scene(root,1000,500);
-	private Scene scene2 = new Scene(root2,1000,500);
-	private Scene scene3 = new Scene(root3,1000,500);
-	private Scene scene4 = new Scene(root4,1000,500);
+	//private Scene scene2 = new Scene(root2,1000,500);
+	//private Scene scene3 = new Scene(root3,1000,500);
+	//private Scene scene4 = new Scene(root4,1000,500);
 	
 	private Label l1 = new Label("Uspesno ste se prijavili kao sef stanice. Odaberite akciju:");
 	private Label l2 = new Label("Pregled izvestaja. Odaberite vremenski period: ");
@@ -335,12 +335,6 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		});
 	}
 	
-	public void maximizeScene(){
-		this.sizeToScene();
-        this.setMaximized(false);
-        this.setMaximized(true);
-	}
-
 	public NaplatnaStanica dobaviNaplatnuStanicu(){
 		for(NaplatnaStanica ns : centrala.getNaplatneStanice()){
 			Korisnik sef = ns.dobaviSefa();
@@ -358,20 +352,16 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 			this.close();
 		}
 		if(event.getSource() == btn1){
-			this.setScene(scene2);
-			maximizeScene();
+			this.scene1.setRoot(root2);
 		}
 		if(event.getSource() == btn2){
-			this.setScene(scene3);
-			maximizeScene();
+			this.scene1.setRoot(root3);
 		}
 		if(event.getSource() == btn3){
-			this.setScene(scene4);
-			maximizeScene();
+			this.scene1.setRoot(root4);
 		}
 		if(event.getSource() == backbtn || event.getSource() == backbtn1 || event.getSource() == backbtn2){
-			this.setScene(scene1);
-			maximizeScene();
+			this.scene1.setRoot(root);
 		}
 		if(event.getSource() == showbtn){
 			if(this.group.getSelectedToggle() == this.rb){

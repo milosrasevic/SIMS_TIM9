@@ -2,8 +2,12 @@ package gui;
 
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,10 +17,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import model.CenovnikVozilo;
+import model.Centrala;
+import model.NaplatnaStanica;
+import model.ObicnoNapMesto;
 import model.TipVozila;
 import model.Valuta;
 
 public class NaplataProzor  extends BorderPane{
+	private ObicnoNapMesto naplatnoMesto;
+	
 	// TOP
 	StackPane sp = new StackPane();
 	Label l = new Label("NAPLATA");
@@ -46,9 +56,14 @@ public class NaplataProzor  extends BorderPane{
 	Label labelKategorije = new Label("KATEGORIJE VOZILA: ");
 	HBox hboxKat = new HBox();
 	
+	// Cene
+	ArrayList<CenovnikVozilo> cene = new ArrayList<CenovnikVozilo>();
+	ArrayList<CenaPolje> cenePolja = new ArrayList<CenaPolje>();
 	
-	public NaplataProzor()
+	
+	public NaplataProzor(ObicnoNapMesto naplatnoMesto)
 	{
+		this.naplatnoMesto = naplatnoMesto;
 		podesiTop();
 		podesiBottom();
 		podesiCenter();
@@ -68,6 +83,7 @@ public class NaplataProzor  extends BorderPane{
 		bpBottom.setRight(btnNaplati);
 		bpBottom.setLeft(labelStatus);
 		this.setBottom(bpBottom);
+		podesiBtnNaplati();
 	}
 	
 	private void podesiCenter()
@@ -77,6 +93,12 @@ public class NaplataProzor  extends BorderPane{
 		
 		podesiPrikazOdabira();
 		podesiPrikazKategorija();
+		try {
+			podesiCene();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		
 		hboxCenter.setPadding(new Insets(100,0,0,0));
 		hboxCenter.setAlignment(Pos.CENTER);
@@ -133,6 +155,7 @@ public class NaplataProzor  extends BorderPane{
 			
 			for (Valuta valuta : Valuta.values()) {
 				CenaPolje cena = new CenaPolje(tip, valuta);
+				cenePolja.add(cena);
 				vb.getChildren().add(cena);
 			}
 		}
@@ -157,4 +180,59 @@ public class NaplataProzor  extends BorderPane{
 			comboValuta.getItems().add(val.name());
 		}
 	}
+	
+	private void podesiCene()
+	{
+		for (CenaPolje cenaPolje : cenePolja) {
+			NaplatnaStanica ulaz = getNaplatnaStanicaUlaz();
+			double iznos = this.naplatnoMesto.getCenaVozila(cenaPolje.getTipVozila(), cenaPolje.getValuta(), ulaz);
+			cenaPolje.setText(String.valueOf(iznos));
+		}
+	}
+	private void podesiBtnNaplati()
+	{
+		this.btnNaplati.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	
+		    	TipVozila tipVozila = TipVozila.strToTip(comboTip.getPromptText());
+		    	Valuta valuta = Valuta.strToValuta(comboValuta.getPromptText());
+		    	NaplatnaStanica ulaz = getNaplatnaStanicaUlaz();
+		    	
+		    	boolean ok = naplatnoMesto.naplati(tipVozila, valuta, ulaz);
+		    	
+		    	if (ok)
+		    	{
+		    		Alert alert = new Alert(AlertType.INFORMATION);
+			    	alert.setHeaderText(null);
+			    	alert.setContentText("Naplata uspesno izvrsena!");
+
+			    	alert.showAndWait();
+		    	} else 
+		    	{
+		    		Alert alert = new Alert(AlertType.ERROR);
+			    	alert.setHeaderText(null);
+			    	alert.setContentText("Naplata neuspesno izvrsena!");
+
+			    	alert.showAndWait();
+		    	}
+		    	
+		    }
+		});
+	}
+	
+	private NaplatnaStanica getNaplatnaStanicaUlaz()
+	{
+		NaplatnaStanica np = null;
+		for (NaplatnaStanica naplatnaStanica : Centrala.getInstance().getNaplatneStanice()) {
+			if (naplatnaStanica.equals(comboUlaz.getPromptText()))
+				{
+					np = naplatnaStanica;
+				}
+		}
+		
+		return np;
+	}
+	
 }

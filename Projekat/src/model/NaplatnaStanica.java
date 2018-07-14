@@ -5,8 +5,11 @@ import java.util.ArrayList;
 
 public class NaplatnaStanica {
 	private String naziv;
-	private ArrayList<NaplatnoMesto> naplatnaMesta = new ArrayList<>();
-	private ArrayList<Korisnik> zaposleniUStanici = new ArrayList<>();
+	private Centrala centrala;
+	private ArrayList<Deonica> deonicaIzlaz = new ArrayList<Deonica>();
+	private ArrayList<Deonica> deonicaUlaz = new ArrayList<Deonica>();
+	private ArrayList<NaplatnoMesto> naplatnaMesta = new ArrayList<NaplatnoMesto>();
+	private ArrayList<Korisnik> zaposleniUStanici = new ArrayList<Korisnik>();
 	
 	public NaplatnaStanica()
 	{
@@ -26,6 +29,30 @@ public class NaplatnaStanica {
 		this.zaposleniUStanici = zaposleni;
 	}
 	
+
+	public NaplatnaStanica(String naziv, Centrala centrala, ArrayList<NaplatnoMesto> naplatnaMesta,
+			ArrayList<Korisnik> zaposleniUStanici) {
+		super();
+		this.naziv = naziv;
+		this.centrala = centrala;
+		this.naplatnaMesta = naplatnaMesta;
+		this.zaposleniUStanici = zaposleniUStanici;
+	}
+	
+	
+
+	public NaplatnaStanica(String naziv, Centrala centrala, ArrayList<Deonica> deonicaIzlaz,
+			ArrayList<Deonica> deonicaUlaz, ArrayList<NaplatnoMesto> naplatnaMesta,
+			ArrayList<Korisnik> zaposleniUStanici) {
+		super();
+		this.naziv = naziv;
+		this.centrala = centrala;
+		this.deonicaIzlaz = deonicaIzlaz;
+		this.deonicaUlaz = deonicaUlaz;
+		this.naplatnaMesta = naplatnaMesta;
+		this.zaposleniUStanici = zaposleniUStanici;
+	}
+
 	public String getNaziv() {
 		return naziv;
 	}
@@ -107,6 +134,38 @@ public class NaplatnaStanica {
 	public void setZaposleniUStanici(ArrayList<Korisnik> zaposleniUStanici) {
 		this.zaposleniUStanici = zaposleniUStanici;
 	}
+
+	public Centrala getCentrala() {
+		return centrala;
+	}
+
+	public void setCentrala(Centrala centrala) {
+		this.centrala = centrala;
+	}
+
+	public ArrayList<Deonica> getDeonicaIzlaz() {
+		return deonicaIzlaz;
+	}
+
+	public void setDeonicaIzlaz(ArrayList<Deonica> deonicaIzlaz) {
+		this.deonicaIzlaz = deonicaIzlaz;
+	}
+
+	public ArrayList<Deonica> getDeonicaUlaz() {
+		return deonicaUlaz;
+	}
+
+	public void setDeonicaUlaz(ArrayList<Deonica> deonicaUlaz) {
+		this.deonicaUlaz = deonicaUlaz;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		NaplatnaStanica np = (NaplatnaStanica) obj;
+		if (np.getNaziv().equals(this.getNaziv()))
+			return true;
+		return false;
+	}
 	public Korisnik dobaviSefa(){
 		for(Korisnik k : zaposleniUStanici){
 			if(k.getTipKorisnika() == TipKorisnika.SEF_STANICE){
@@ -116,5 +175,4 @@ public class NaplatnaStanica {
 		return null;
 	}
 	
-		
 }

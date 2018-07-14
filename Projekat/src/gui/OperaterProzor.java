@@ -13,11 +13,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Korisnik;
 
 public class OperaterProzor extends Stage{
+	
+	private Korisnik korisnik;
+	
 	private OperaterProzor prozor;
 	private BorderPane root;
-	private BorderPane naplataRoot;
+	private NaplataProzor naplataRoot;
+	private IzvestajiProzor izvestajiRoot;
 
 	private Label labelaNaziv = new Label("Naziv Stanice i Naziv Naplatnog mesta");
 	private Label labelaStanje = new Label("Stanje rampe");
@@ -31,8 +36,9 @@ public class OperaterProzor extends Stage{
 	private VBox vboxLeft = new VBox();
 	private BorderPane bpLeft = new BorderPane();
 	
-	public OperaterProzor()
+	public OperaterProzor(Korisnik korisnik)
 	{
+		this.korisnik = korisnik;
 		podesiInterfejs();
 		podesiAkcije();
 		this.showAndWait();
@@ -95,9 +101,19 @@ public class OperaterProzor extends Stage{
 			 
 		    @Override
 		    public void handle(ActionEvent e) {
-		    	NaplataProzor naplataProzor = new NaplataProzor();
+		    	NaplataProzor naplataProzor = new NaplataProzor(korisnik.getNaplatnoMesto());
 		    	naplataRoot = naplataProzor;
 		    	root.setCenter(naplataProzor);
+		    }
+		});
+		
+		this.btnIzvestaji.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	IzvestajiProzor izvestajiProzor = new IzvestajiProzor();
+		    	izvestajiRoot = izvestajiProzor;
+		    	root.setCenter(izvestajiProzor);
 		    }
 		});
 	}
