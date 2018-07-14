@@ -1,12 +1,12 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.ArrayList;
 
 public class NaplatnaStanica {
 	private String naziv;
-	private ArrayList<NaplatnoMesto> naplatnaMesta = new ArrayList<NaplatnoMesto>();
-	private ArrayList<Korisnik> zaposleniUStanici = new ArrayList<Korisnik>();
+	private ArrayList<NaplatnoMesto> naplatnaMesta = new ArrayList<>();
+	private ArrayList<Korisnik> zaposleniUStanici = new ArrayList<>();
 	
 	public NaplatnaStanica()
 	{
@@ -18,7 +18,6 @@ public class NaplatnaStanica {
 		this.naziv = naziv;
 	}
 	
-	
 	//TODO : proveri nacin na koji se odredjuju zaposleni u stanici, i da li treba da postoje u konstruktoru
 	public NaplatnaStanica(String naziv, ArrayList<NaplatnoMesto> naplatnaMesta, ArrayList<Korisnik> zaposleni) {
 		super();
@@ -26,7 +25,7 @@ public class NaplatnaStanica {
 		this.naplatnaMesta = naplatnaMesta;
 		this.zaposleniUStanici = zaposleni;
 	}
-
+	
 	public String getNaziv() {
 		return naziv;
 	}
@@ -108,8 +107,7 @@ public class NaplatnaStanica {
 	public void setZaposleniUStanici(ArrayList<Korisnik> zaposleniUStanici) {
 		this.zaposleniUStanici = zaposleniUStanici;
 	}
-
-	public Korisnik getSef(){
+	public Korisnik dobaviSefa(){
 		for(Korisnik k : zaposleniUStanici){
 			if(k.getTipKorisnika() == TipKorisnika.SEF_STANICE){
 				return k;
@@ -117,4 +115,6 @@ public class NaplatnaStanica {
 		}
 		return null;
 	}
+	
+		
 }

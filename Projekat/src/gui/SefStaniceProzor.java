@@ -343,7 +343,7 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 
 	public NaplatnaStanica dobaviNaplatnuStanicu(){
 		for(NaplatnaStanica ns : centrala.getNaplatneStanice()){
-			Korisnik sef = ns.getSef();
+			Korisnik sef = ns.dobaviSefa();
 			if(sef.getKorisnickoIme().equalsIgnoreCase(this.korisnicko) && sef.getLozinka().equalsIgnoreCase(this.lozinka)){
 				return ns;
 			}
