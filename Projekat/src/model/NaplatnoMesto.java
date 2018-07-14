@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public abstract class NaplatnoMesto {
-
+	private NaplatnaStanica naplatnaStanica;
 	private int redniBroj;
 	private Rampa rampa;
 	private ArrayList<Kvar> kvarovi = new ArrayList<Kvar>();
@@ -35,6 +35,18 @@ public abstract class NaplatnoMesto {
 		this.kvarovi = kvarovi;
 		this.prolasci = prolasci;
 	}
+	
+
+	public NaplatnoMesto(NaplatnaStanica naplatnaStanica, int redniBroj, Rampa rampa, ArrayList<Kvar> kvarovi,
+			ArrayList<Prolazak> prolasci, ArrayList<Korisnik> zaposleniUMestu) {
+		super();
+		this.naplatnaStanica = naplatnaStanica;
+		this.redniBroj = redniBroj;
+		this.rampa = rampa;
+		this.kvarovi = kvarovi;
+		this.prolasci = prolasci;
+		this.zaposleniUMestu = zaposleniUMestu;
+	}
 
 	public NaplatnoMesto(int redniBroj) {
 		super();
@@ -57,7 +69,7 @@ public abstract class NaplatnoMesto {
 
 	}
 
-	public abstract void naplati();
+	public abstract boolean naplati(TipVozila tipVozila, Valuta valuta, NaplatnaStanica ulaz);
 
 	public int getRedniBroj() {
 		return redniBroj;
@@ -97,6 +109,36 @@ public abstract class NaplatnoMesto {
 
 	public void setZaposleniUMestu(ArrayList<Korisnik> zaposleniUMestu) {
 		this.zaposleniUMestu = zaposleniUMestu;
+	}
+	
+	
+	public NaplatnaStanica getNaplatnaStanica() {
+		return naplatnaStanica;
+	}
+
+	public void setNaplatnaStanica(NaplatnaStanica naplatnaStanica) {
+		this.naplatnaStanica = naplatnaStanica;
+	}
+
+	public  double getCenaVozila(TipVozila tipVozila, Valuta valuta, NaplatnaStanica ulaz)
+	{
+		ArrayList<Deonica> deoniceIzlaz = this.naplatnaStanica.getDeonicaIzlaz();
+		
+		for (Deonica deonica : deoniceIzlaz) {
+			if (deonica.getUlaznaStanica().equals(ulaz))
+			{
+				for (Cenovnik cenovnik : deonica.getCenovnici()) {
+					for (CenovnikVozilo c : cenovnik.getCenovniciVozila()) {
+						if (c.getValuta().equals(valuta) && c.getTipVozila().equals(tipVozila))
+						{
+							return c.getCena();
+						}
+					}
+				}
+			}
+		}
+		return 0;
+		
 	}
 	
 }

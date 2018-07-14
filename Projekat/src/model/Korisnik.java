@@ -6,6 +6,8 @@ public class Korisnik {
 	private String lozinka;
 	private TipKorisnika tipKorisnika;
 	
+	private ObicnoNapMesto naplatnoMesto;
+	
 	public Korisnik()
 	{
 		
@@ -39,6 +41,14 @@ public class Korisnik {
 
 	public void setTipKorisnika(TipKorisnika tipKorisnika) {
 		this.tipKorisnika = tipKorisnika;
+	}
+
+	public ObicnoNapMesto getNaplatnoMesto() {
+		return naplatnoMesto;
+	}
+
+	public void setNaplatnoMesto(ObicnoNapMesto naplatnoMesto) {
+		this.naplatnoMesto = naplatnoMesto;
 	}
 	
 	

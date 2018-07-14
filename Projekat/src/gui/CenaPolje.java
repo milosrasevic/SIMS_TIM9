@@ -10,11 +10,15 @@ public class CenaPolje extends TextField{
 	
 	public CenaPolje()
 	{
+		
 	}
 
 	public CenaPolje(TipVozila tipVozila, Valuta valuta) {
 		this.tipVozila = tipVozila;
 		this.valuta = valuta;
+		this.setEditable(false);
+		this.setMouseTransparent(true);
+		this.setFocusTraversable(false);
 	}
 
 	public TipVozila getTipVozila() {
@@ -32,5 +36,5 @@ public class CenaPolje extends TextField{
 	public void setValuta(Valuta valuta) {
 		this.valuta = valuta;
 	}
-	
+
 }
