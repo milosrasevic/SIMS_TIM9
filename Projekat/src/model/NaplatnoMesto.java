@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+@JsonDeserialize(as = ObicnoNapMesto.class)
 public abstract class NaplatnoMesto {
 
 	private int redniBroj;
@@ -27,6 +29,15 @@ public abstract class NaplatnoMesto {
 		this.kvarovi = kvarovi;
 	}
 	
+	public NaplatnoMesto(int redniBroj, ArrayList<Kvar> kvarovi, ArrayList<Prolazak> prolasci, ArrayList<Korisnik> zaposleni) {
+		super();
+		this.redniBroj = redniBroj;
+		this.kvarovi = kvarovi;
+		this.prolasci = prolasci;
+		this.zaposleniUMestu = zaposleni;
+	}
+	
+	
 	//TODO : proveri nacin na koji se odredjuju zaposleni u mestu, i da li treba da postoje u konstruktoru
 	public NaplatnoMesto(int redniBroj, Rampa rampa, ArrayList<Kvar> kvarovi, ArrayList<Prolazak> prolasci) {
 		super();
@@ -35,6 +46,7 @@ public abstract class NaplatnoMesto {
 		this.kvarovi = kvarovi;
 		this.prolasci = prolasci;
 	}
+	
 
 	public NaplatnoMesto(int redniBroj) {
 		super();

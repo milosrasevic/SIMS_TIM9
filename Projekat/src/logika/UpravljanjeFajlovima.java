@@ -14,17 +14,38 @@ import model.Deonica;
 import model.Deonice;
 import model.Korisnici;
 import model.Korisnik;
+import model.NaplatnaStanica;
+import model.NaplatneStanice;
 
 public class UpravljanjeFajlovima {
 	// TODO metode bacaju izuzetke, mozda ih treba obraditi sa try catch
 	
 	static String fajl_korisnici = "src/reprozitorijum/korisnici.json";
 	static String fajl_deonice = "src/reprozitorijum/deonice.json";
+	static String fajl_naplatne_stanice = "src/reprozitorijum/naplatne_stanice.json";
 	static ObjectMapper mapper = new ObjectMapper();
 	
 	static Centrala centrala = Centrala.getInstance();
 	static Korisnici korisnici = Korisnici.getInstance();
 	static Deonice deonice = Deonice.getInstance();
+	static NaplatneStanice naplatne_stanice = NaplatneStanice.getInstance();
+	
+	public void ucitajStanice() throws JsonParseException, JsonMappingException, IOException {
+		naplatne_stanice = mapper.readValue(new File(fajl_naplatne_stanice), NaplatneStanice.class);
+		centrala.setNaplatneStanice(naplatne_stanice.getNaplatne_stanice());
+	}
+	
+	public void azurirajStanice(ArrayList<NaplatnaStanica> naplatneStanice) throws JsonGenerationException, JsonMappingException, IOException {
+		mapper.writeValue(new File(fajl_naplatne_stanice), naplatneStanice);
+	}
+	public void dodajStanicu(NaplatnaStanica st) throws JsonGenerationException, JsonMappingException, IOException {
+		ArrayList<NaplatnaStanica> naplatnaStanica = centrala.getNaplatneStanice();
+		naplatnaStanica.add(st);
+		centrala.setNaplatneStanice(naplatnaStanica);
+
+		naplatne_stanice.setNaplatne_stanice(naplatnaStanica);
+		azurirajStanice(naplatne_stanice.getNaplatne_stanice());
+	}
 	
 	public void ucitajDeonice() throws JsonParseException, JsonMappingException, IOException {
 		deonice = mapper.readValue(new File(fajl_deonice), Deonice.class);

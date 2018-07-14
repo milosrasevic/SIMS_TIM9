@@ -108,7 +108,7 @@ public class AdministratorProzor extends Stage implements EventHandler<ActionEve
 		btn_dodaj_korisnika.setPrefSize(400, 500);
 		btn_izmeni_korisnika.setPrefSize(400, 500);
 		btn_obrisi_korisnika.setPrefSize(400, 500);
-		btn_nazad.setPrefSize(400, 500);
+		btn_nazad.setPrefSize(1800, 300);
 		
 		centar_korisnici.getChildren().addAll(btn_dodaj_korisnika, btn_izmeni_korisnika, btn_obrisi_korisnika);
 		centar_korisnici.setAlignment(Pos.CENTER);

@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Centrala;
 import model.Deonica;
+import model.NaplatnaStanica;
+import model.NaplatnoMesto;
 
 public class ZaposleniCentralaProzor extends Stage implements EventHandler<ActionEvent>{
 	
@@ -42,7 +44,7 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 	private Button btn_naplaceni_iznos = new Button("Naplaceni iznos");
 	private Button btn_kvarovi = new Button("Kvarovi");
 	private Button btn_broj_vozila_period = new Button("Broj vozila period");
-	private Button btn_nazad = new Button("Nazad");
+	private Button btn_nazad = new Button("NAZAD");
 	private ComboBox lista_stanica = new ComboBox<>();
 	private Label tekst_zaglavlja_stanice = new Label("  STANICA");
 	private HBox zaglavlje_stanica = new HBox(150);
@@ -71,6 +73,8 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 	private HBox podglavlje_mesta = new HBox();
 	private VBox vbox_mesta = new VBox();
 	
+	private ArrayList<String> listaNazivaDeonica = new ArrayList<String>();
+	private ArrayList<Integer> listaNazivaMesta = new ArrayList<>();
 	
 	
 	
@@ -112,11 +116,9 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 		//****************************************************************************
 		tekst_zaglavlja_stanice.setStyle("-fx-font: 50 arial; -fx-base: #b6e7c9;");
 		lista_stanica.setStyle("-fx-font: 30 arial; -fx-base: #b6e7c9;");
-		ArrayList<String> listaNazivaDeonica = new ArrayList<String>();
-		for (Deonica deonica : centrala.getDeonice()) {
-			if(!listaNazivaDeonica.contains(deonica.getUlaznaStanica().getNaziv())) {
-				listaNazivaDeonica.add(deonica.getUlaznaStanica().getNaziv());
-			}
+		 
+		for (NaplatnaStanica stanica : centrala.getNaplatneStanice()) {
+			listaNazivaDeonica.add(stanica.getNaziv());
 		}
 		lista_stanica.getItems().addAll(listaNazivaDeonica);
 		zaglavlje_stanica.setAlignment(Pos.CENTER);
@@ -149,7 +151,6 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 		tekst_zaglavlja_mesta2.setStyle("-fx-font: 50 arial; -fx-base: #b6e7c9;");
 		lista_mesta.setStyle("-fx-font: 30 arial; -fx-base: #b6e7c9;");
 		lista_stanica_mesto.setStyle("-fx-font: 30 arial; -fx-base: #b6e7c9;");
-		ArrayList<String> listaNazivaMesta = new ArrayList<>(); 
 		
 		
 		lista_stanica_mesto.getItems().addAll(listaNazivaDeonica);
@@ -187,6 +188,7 @@ public class ZaposleniCentralaProzor extends Stage implements EventHandler<Actio
 		btn_kvarovi.setOnAction(this);
 		btn_broj_vozila_period.setOnAction(this);
 		btn_nazad.setOnAction(this);
+		btn_nazad_mesto.setOnAction(this);
 		this.showAndWait();
 		
 	}

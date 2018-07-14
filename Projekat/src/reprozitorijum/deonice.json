@@ -90,14 +90,14 @@
 		"zaposleniUStanici": []
 	},
 	"izlaznaStanica": {
-		"naziv": "Vranje!",
+		"naziv": "Vranje",
 		"naplatnaMesta": [],
 		"zaposleniUStanici": []
 	},
 	"cenovnici": []
 }, {
 	"ulaznaStanica": {
-		"naziv": "Vranje!",
+		"naziv": "Vranje",
 		"naplatnaMesta": [],
 		"zaposleniUStanici": []
 	},
@@ -109,7 +109,7 @@
 	"cenovnici": []
 }, {
 	"ulaznaStanica": {
-		"naziv": "Vranje!",
+		"naziv": "Vranje",
 		"naplatnaMesta": [],
 		"zaposleniUStanici": []
 	},

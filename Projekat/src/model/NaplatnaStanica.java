@@ -20,10 +20,11 @@ public class NaplatnaStanica {
 	
 	
 	//TODO : proveri nacin na koji se odredjuju zaposleni u stanici, i da li treba da postoje u konstruktoru
-	public NaplatnaStanica(String naziv, ArrayList<NaplatnoMesto> naplatnaMesta) {
+	public NaplatnaStanica(String naziv, ArrayList<NaplatnoMesto> naplatnaMesta, ArrayList<Korisnik> zaposleni) {
 		super();
 		this.naziv = naziv;
 		this.naplatnaMesta = naplatnaMesta;
+		this.zaposleniUStanici = zaposleni;
 	}
 
 	public String getNaziv() {
