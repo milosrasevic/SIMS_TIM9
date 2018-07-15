@@ -17,6 +17,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -30,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Centrala;
+import model.Deonica;
 import model.Korisnik;
 import model.NaplatnaStanica;
 
@@ -72,7 +74,13 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private HBox hboxshow = new HBox();
 	private HBox hboxta = new HBox(); 
 	private HBox hboxkvar = new HBox();
+	private HBox hboxdeonica = new HBox();
 	
+	private ComboBox ulazneStanice = new ComboBox<>();
+	private ComboBox izlazneStanice = new ComboBox<>();
+	
+	private ArrayList<String> listaNazivaUlaznih = new ArrayList<String>();
+	private ArrayList<String> listaNazivaIzlaznih = new ArrayList<String>();
 	
 	
 	private BorderPane root = new BorderPane();
@@ -85,12 +93,15 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private Label l1 = new Label("Uspesno ste se prijavili kao sef stanice. Odaberite akciju:");
 	private Label l2 = new Label("Pregled izvestaja. Odaberite vremenski period: ");
 	private Label l3 = new Label("Pregled kvarova");
-	private Label l4 = new Label("Izmena cena");
+	private Label l4 = new Label("Izmena cena. Odaberite deonicu: ");
 	private Label l5 = new Label("Odaberite tip izvestaja: ");
+	private Label labelaUlazna = new Label("Ulazna stanica: ");
+	private Label labelaizlazna = new Label("Izlazna stanica: ");
 	
 	private VBox vbox = new VBox();
 	private VBox vboxtoggle = new VBox();
 	private VBox vboxkvar = new VBox();
+	private VBox vboxdeonica = new VBox();
 	
 	private String korisnicko;
 	private String lozinka;
@@ -122,6 +133,8 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		l3.setStyle("-fx-text-fill: white; -fx-font: 21 arial;");
 		l4.setStyle("-fx-text-fill: white; -fx-font: 21 arial;");
 		l5.setStyle("-fx-text-fill: white; -fx-font: 21 arial;");
+		labelaUlazna.setStyle("-fx-font: 21 arial;");
+		labelaizlazna.setStyle("-fx-font: 21 arial;");
 		hboxlabela5.setAlignment(Pos.CENTER);
 		hboxlabela5.setStyle("-fx-background-color: #336666");
 		//l5.setStyle("-fx-background-color: #336666");
@@ -258,7 +271,38 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		hboxkvar.setPadding(new Insets(270,0,0,500));
 		
 		root4.setTop(hbox8);
+		root4.setCenter(vboxdeonica);
 		
+		vboxdeonica.getChildren().add(hboxdeonica);
+		
+		/*NaplatnaStanica ns = dobaviNaplatnuStanicu();
+		
+		for(Deonica ulaz : ns.getDeonicaUlaz()){
+			listaNazivaUlaznih.add(ulaz.getUlaznaStanica().getNaziv());
+		}
+		
+		for(Deonica izlaz : ns.getDeonicaIzlaz()){
+			listaNazivaIzlaznih.add(izlaz.getIzlaznaStanica().getNaziv());
+		}
+		*/
+		//ulazneStanice.getItems().addAll(listaNazivaUlaznih);
+		//izlazneStanice.getItems().addAll(listaNazivaIzlaznih);
+		
+		hboxdeonica.getChildren().add(labelaUlazna);
+		hboxdeonica.getChildren().add(ulazneStanice);
+		hboxdeonica.getChildren().add(labelaizlazna);
+		hboxdeonica.getChildren().add(izlazneStanice);
+		hboxdeonica.setAlignment(Pos.CENTER);
+		hboxdeonica.setSpacing(60);
+		hboxdeonica.setPadding(new Insets(20,0,0,0));
+		
+		ulazneStanice.setPrefWidth(200);
+		ulazneStanice.setPrefHeight(25);
+		ulazneStanice.setStyle("-fx-font: 21 arial;");
+		
+		izlazneStanice.setPrefWidth(200);
+		izlazneStanice.setPrefHeight(25);
+		izlazneStanice.setStyle("-fx-font: 21 arial;");
 		
 		hbox5.setStyle("-fx-background-color: #336699;");
 		hbox5.getChildren().add(backbtn);
