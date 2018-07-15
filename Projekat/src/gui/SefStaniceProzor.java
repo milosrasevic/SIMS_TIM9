@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javafx.beans.value.ChangeListener;
@@ -53,6 +54,7 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	final ToggleGroup group1 = new ToggleGroup();
 	
 	private TextArea ts = new TextArea();
+	private TextArea tskvar = new TextArea();
 	
 	private HBox hbox1 = new HBox();
 	private HBox hbox2 = new HBox();
@@ -69,6 +71,9 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private HBox hboxlabela5 = new HBox();
 	private HBox hboxshow = new HBox();
 	private HBox hboxta = new HBox(); 
+	private HBox hboxkvar = new HBox();
+	
+	
 	
 	private BorderPane root = new BorderPane();
 	private BorderPane root2 = new BorderPane();
@@ -76,9 +81,6 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private BorderPane root4 = new BorderPane();
 	
 	private Scene scene1 = new Scene(root,1000,500);
-	//private Scene scene2 = new Scene(root2,1000,500);
-	//private Scene scene3 = new Scene(root3,1000,500);
-	//private Scene scene4 = new Scene(root4,1000,500);
 	
 	private Label l1 = new Label("Uspesno ste se prijavili kao sef stanice. Odaberite akciju:");
 	private Label l2 = new Label("Pregled izvestaja. Odaberite vremenski period: ");
@@ -88,6 +90,7 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	
 	private VBox vbox = new VBox();
 	private VBox vboxtoggle = new VBox();
+	private VBox vboxkvar = new VBox();
 	
 	private String korisnicko;
 	private String lozinka;
@@ -243,6 +246,17 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		vboxtoggle.getChildren().add(hboxta);
 		
 		root3.setTop(hbox7);
+		root3.setCenter(vboxkvar);
+		
+		vboxkvar.getChildren().add(hboxkvar);
+		hboxkvar.getChildren().add(tskvar);
+		tskvar.setPrefHeight(400);
+		tskvar.setPrefWidth(920);
+		tskvar.setScaleX(2);
+		tskvar.setScaleY(2);
+		tskvar.setEditable(false);
+		hboxkvar.setPadding(new Insets(270,0,0,500));
+		
 		root4.setTop(hbox8);
 		
 		
@@ -356,6 +370,7 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		}
 		if(event.getSource() == btn2){
 			this.scene1.setRoot(root3);
+			pregledajKvarove(dobaviNaplatnuStanicu());
 		}
 		if(event.getSource() == btn3){
 			this.scene1.setRoot(root4);
@@ -393,6 +408,14 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		
 	}
 	
+	private void pregledajKvarove(NaplatnaStanica ns) {
+		ArrayList<String> kvarovi = ns.pregledajKvarove();
+		for(String s : kvarovi){
+			this.tskvar.appendText(s + '\n');
+		}
+		
+	}
+
 	public double pozivIzvestaja(NaplatnaStanica ns, Boolean arg1, Boolean arg2,Date datum){
 		double suma = 0;
 		if(arg1){
