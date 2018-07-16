@@ -45,6 +45,8 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private Button backbtn1 = new Button("Nazad");
 	private Button backbtn2 = new Button("Nazad");
 	private Button showbtn = new Button("Prikazi");
+	private Button changebtn = new Button("Izmeni");
+	private Button showpricebtn = new Button("Prikazi cenu");
 	
 	private RadioButton rb = new RadioButton("Izvestaj za sve dane");
 	private RadioButton rb1 = new RadioButton("Izvestaj za odredjen vremenski period");
@@ -57,6 +59,8 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	
 	private TextArea ts = new TextArea();
 	private TextArea tskvar = new TextArea();
+	private TextArea tsstaracena = new TextArea();
+	private TextArea tsnovacena = new TextArea();
 	
 	private HBox hbox1 = new HBox();
 	private HBox hbox2 = new HBox();
@@ -75,6 +79,8 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private HBox hboxta = new HBox(); 
 	private HBox hboxkvar = new HBox();
 	private HBox hboxdeonica = new HBox();
+	private HBox hboxcena = new HBox();
+	private HBox hboxprikazcene = new HBox();
 	
 	private ComboBox ulazneStanice = new ComboBox<>();
 	private ComboBox izlazneStanice = new ComboBox<>();
@@ -97,6 +103,8 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 	private Label l5 = new Label("Odaberite tip izvestaja: ");
 	private Label labelaUlazna = new Label("Ulazna stanica: ");
 	private Label labelaizlazna = new Label("Izlazna stanica: ");
+	private Label labelaStaraCena = new Label("Stara cena: ");
+	private Label labelaNovaCena = new Label("Nova cena: ");
 	
 	private VBox vbox = new VBox();
 	private VBox vboxtoggle = new VBox();
@@ -162,6 +170,9 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		
 		showbtn.setScaleX(1.7);
 		showbtn.setScaleY(1.7);
+		
+		showpricebtn.setScaleX(1.6);
+		showpricebtn.setScaleY(1.6);
 		
 		rb.setScaleX(1.5);
 		rb.setScaleY(1.5);
@@ -244,6 +255,9 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		hboxshow.setPadding(new Insets(30,20,20,0));
 		hboxshow.setAlignment(Pos.CENTER);
 		
+		hboxprikazcene.getChildren().add(showpricebtn);
+		hboxprikazcene.setAlignment(Pos.CENTER);
+		
 		vboxtoggle.getChildren().add(hboxtoggle);
 		vboxtoggle.getChildren().add(hboxlabela5);
 		vboxtoggle.getChildren().add(hboxtoggle1);
@@ -274,19 +288,16 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		root4.setCenter(vboxdeonica);
 		
 		vboxdeonica.getChildren().add(hboxdeonica);
+		vboxdeonica.getChildren().add(hboxprikazcene);
+		vboxdeonica.getChildren().add(hboxcena);
+		vboxdeonica.setSpacing(60);
 		
-		/*NaplatnaStanica ns = dobaviNaplatnuStanicu();
-		
-		for(Deonica ulaz : ns.getDeonicaUlaz()){
-			listaNazivaUlaznih.add(ulaz.getUlaznaStanica().getNaziv());
+		for(NaplatnaStanica ns : centrala.getNaplatneStanice()){
+			listaNazivaUlaznih.add(ns.getNaziv());
 		}
 		
-		for(Deonica izlaz : ns.getDeonicaIzlaz()){
-			listaNazivaIzlaznih.add(izlaz.getIzlaznaStanica().getNaziv());
-		}
-		*/
-		//ulazneStanice.getItems().addAll(listaNazivaUlaznih);
-		//izlazneStanice.getItems().addAll(listaNazivaIzlaznih);
+		ulazneStanice.getItems().addAll(listaNazivaUlaznih);
+		izlazneStanice.getItems().addAll(listaNazivaUlaznih);
 		
 		hboxdeonica.getChildren().add(labelaUlazna);
 		hboxdeonica.getChildren().add(ulazneStanice);
@@ -294,7 +305,7 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		hboxdeonica.getChildren().add(izlazneStanice);
 		hboxdeonica.setAlignment(Pos.CENTER);
 		hboxdeonica.setSpacing(60);
-		hboxdeonica.setPadding(new Insets(20,0,0,0));
+		hboxdeonica.setPadding(new Insets(300,0,0,0));
 		
 		ulazneStanice.setPrefWidth(200);
 		ulazneStanice.setPrefHeight(25);
@@ -303,6 +314,30 @@ public class SefStaniceProzor extends Stage implements EventHandler<ActionEvent>
 		izlazneStanice.setPrefWidth(200);
 		izlazneStanice.setPrefHeight(25);
 		izlazneStanice.setStyle("-fx-font: 21 arial;");
+		
+		labelaStaraCena.setStyle("-fx-font: 21 arial;");
+		labelaNovaCena.setStyle("-fx-font: 21 arial;");
+		
+		changebtn.setScaleX(1.5);
+		changebtn.setScaleY(1.5);
+		
+		hboxcena.setAlignment(Pos.CENTER);
+		hboxcena.setSpacing(40);
+		//hboxcena.setPadding(new Insets(60,0,0,0));
+		
+		tsstaracena.setPrefHeight(20);
+		tsstaracena.setPrefWidth(100);
+		tsnovacena.setPrefHeight(20);
+		tsnovacena.setPrefWidth(100);
+		
+		hboxcena.getChildren().add(labelaStaraCena);
+		hboxcena.getChildren().add(tsstaracena);
+		tsstaracena.setEditable(false);
+		hboxcena.getChildren().add(labelaNovaCena);
+		hboxcena.getChildren().add(tsnovacena);
+		hboxcena.getChildren().add(changebtn);
+		
+		
 		
 		hbox5.setStyle("-fx-background-color: #336699;");
 		hbox5.getChildren().add(backbtn);
